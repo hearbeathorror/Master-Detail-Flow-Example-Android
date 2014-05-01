@@ -11,13 +11,15 @@ import com.example.androidappmasterdetails.fragments.VideoListFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.ExpandableListView;
 
 public class MainActivity extends FragmentActivity {
-	private boolean mTwoPane;
+	private static boolean mTwoPane;
 	private DummyDataAdapter mDummyDataAdapter;
 	private List<DummyData> mDummyDataList;
 	private ExpandableListView mExpandableListView;
+	private final String TAG = this.getClass().getSimpleName();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,8 @@ public class MainActivity extends FragmentActivity {
 	
 	public void performOnItemClick(int position) {
 		if(mTwoPane) {
-			Bundle arguments = new Bundle();
-			arguments.putString("position",String.valueOf(position));
-			VideoListFragment fragment = new VideoListFragment();
-			fragment.setArguments(arguments);
+			Log.v(TAG," String.valueOf(position) : " + String.valueOf(position));
+			VideoListFragment fragment = VideoListFragment.newInstance(position);
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.realContent, fragment).commit();
 		}

@@ -10,6 +10,7 @@ import com.example.androidappmasterdetails.dummy.StaticDataManager;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class ChannelListFragment extends Fragment implements OnItemClickListener
 	private ListView mChannelList;
 	private List<DummyData> mDummyDataList;
 	private ChannelAdapter mChannelAdapter;
+	private final String TAG  =this.getClass().getSimpleName();
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +50,7 @@ public class ChannelListFragment extends Fragment implements OnItemClickListener
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view,
 			int position, long id) {
+		Log.v(TAG,"on item click :  " + position);
 		((MainActivity)getActivity()).performOnItemClick(position);
 	}
 }
